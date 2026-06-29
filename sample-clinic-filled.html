@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smile Studio Dental Clinic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F4EF;
+    --ink:#16302B;
+    --ink-soft:#4D5F5A;
+    --card:#FFFFFF;
+    --accent:#2F6F62;
+    --accent-warm:#C8763A;
+    --line:rgba(22,48,43,0.14);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Sora',sans-serif;font-weight:700;margin:0;line-height:1.1;}
+  a{color:inherit;}
+  :focus-visible{outline:3px solid var(--accent-warm);outline-offset:3px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+
+  /* ---------- nav ---------- */
+  .nav{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;}
+  .nav-name{font-family:'Sora',sans-serif;font-weight:700;font-size:19px;}
+  .nav-links{display:none;gap:28px;font-size:15px;color:var(--ink-soft);}
+  .nav-links a{text-decoration:none;}
+  .nav-links a:hover{color:var(--ink);}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid transparent;}
+  .btn-primary{background:var(--accent-warm);color:#fff;}
+  .btn-primary:hover{background:#A85F2C;}
+  .btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent;}
+  .btn-ghost:hover{background:var(--ink);color:var(--bg);}
+  @media(min-width:760px){.nav-links{display:flex;}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:64px 0 48px;}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);margin:0 0 14px;display:inline-flex;align-items:center;gap:8px;}
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);}
+  .hero h1{font-size:clamp(32px,5.5vw,52px);max-width:18ch;}
+  .hero p.lead{font-size:17px;color:var(--ink-soft);max-width:46ch;margin:18px 0 28px;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:32px;}
+
+  /* signature: next-available-slot chips */
+  .slots{display:flex;flex-wrap:wrap;gap:10px;}
+  .slot-label{font-size:13px;color:var(--ink-soft);width:100%;margin-bottom:4px;}
+  .slot{
+    background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:9px 16px;font-family:'IBM Plex Mono',monospace;font-size:13px;
+    box-shadow:0 2px 0 rgba(22,48,43,0.04);
+  }
+  .slot strong{color:var(--accent);}
+
+  /* ---------- about ---------- */
+  .about{padding:48px 0;border-top:1px solid var(--line);}
+  .about .wrap{display:grid;gap:28px;}
+  .practitioner-card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:24px;display:flex;gap:16px;align-items:flex-start;
+  }
+  .avatar{
+    width:56px;height:56px;border-radius:50%;flex-shrink:0;
+    background:linear-gradient(135deg,var(--accent),#1F4D43);
+  }
+  .practitioner-card .pname{font-weight:700;font-size:17px;}
+  .practitioner-card .pyears{font-size:13px;color:var(--ink-soft);margin-top:2px;}
+  .about p{font-size:16px;color:var(--ink-soft);max-width:60ch;margin:0;}
+  @media(min-width:760px){.about .wrap{grid-template-columns:0.9fr 1.3fr;align-items:flex-start;}}
+
+  /* ---------- services ---------- */
+  .services{padding:56px 0;}
+  .section-head{margin-bottom:32px;}
+  .section-head h2{font-size:clamp(24px,4vw,34px);}
+  .svc-grid{display:grid;grid-template-columns:1fr;gap:16px;}
+  .svc-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .svc-icon{width:34px;height:34px;margin-bottom:14px;}
+  .svc-card h3{font-size:17px;margin-bottom:8px;}
+  .svc-card p{font-size:14px;color:var(--ink-soft);margin:0;}
+  @media(min-width:600px){.svc-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ---------- trust strip ---------- */
+  .trust{background:var(--ink);color:var(--bg);padding:40px 0;}
+  .trust .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .trust-item{display:flex;flex-direction:column;gap:6px;}
+  .trust-item .tval{font-family:'Sora',sans-serif;font-weight:700;font-size:26px;color:var(--accent-warm);}
+  .trust-item .tlabel{font-size:13px;color:#CBD4D1;}
+  @media(min-width:700px){.trust .wrap{grid-template-columns:repeat(4,1fr);}}
+
+  /* ---------- booking ---------- */
+  .booking{padding:64px 0;}
+  .booking-card{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:40px;display:grid;gap:28px;
+  }
+  .booking-card h2{font-size:clamp(24px,4vw,32px);margin-bottom:10px;}
+  .booking-data{font-family:'IBM Plex Mono',monospace;font-size:14px;line-height:2;color:var(--ink-soft);}
+  .booking-ctas{display:flex;flex-wrap:wrap;gap:14px;}
+  @media(min-width:760px){.booking-card{grid-template-columns:1fr 1fr;}}
+
+  footer{padding:22px 0;text-align:center;font-size:13px;color:var(--ink-soft);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <span class="nav-name">Smile Studio Dental Clinic</span>
+    <nav class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#book">Book</a>
+    </nav>
+    <a class="btn btn-primary" href="https://wa.me/919876512345">Book Appointment</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Now accepting new patients</p>
+    <h1>Healthy smiles, gentle care.</h1>
+    <p class="lead">Dr. Verma and her team focus on calm, modern dental care — clear explanations, painless procedures, and zero unnecessary waiting.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://wa.me/919876512345">Book on WhatsApp</a>
+      <a class="btn btn-ghost" href="tel:+91 98765 12345">Call +91 98765 12345</a>
+    </div>
+    <div class="slots">
+      <span class="slot-label">Next available slots</span>
+      <span class="slot">Today · <strong>4:30 PM</strong></span>
+      <span class="slot">Tomorrow · <strong>10:00 AM</strong></span>
+      <span class="slot">Mon · <strong>2:00 PM</strong></span>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="practitioner-card">
+      <!-- DEV NOTE for Aryan: swap .avatar for a real <img> headshot before delivery -->
+      <div class="avatar" aria-hidden="true"></div>
+      <div>
+        <div class="pname">Dr. Ananya Verma, BDS, MDS</div>
+        <div class="pyears">12+ years of practice</div>
+      </div>
+    </div>
+    <p>Dr. Verma and her team focus on calm, modern dental care — clear explanations, painless procedures, and zero unnecessary waiting.</p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">What we treat</p>
+      <h2>Care, organised around you</h2>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="15" stroke="#2F6F62" stroke-width="2"/><path d="M17 10v14M10 17h14" stroke="#2F6F62" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>General Checkups</h3>
+        <p>Routine exams, cleaning & advice</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 34 34" fill="none"><rect x="4" y="4" width="26" height="26" rx="6" stroke="#2F6F62" stroke-width="2"/><path d="M11 17h12M17 11v12" stroke="#2F6F62" stroke-width="2" stroke-linecap="round"/></svg>
+        <h3>Teeth Whitening</h3>
+        <p>Safe, in-clinic whitening sessions</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 34 34" fill="none"><path d="M17 29s-12-7.2-12-15.6C5 8.2 9 5 13 6.6 15 7.4 17 9.6 17 9.6S19 7.4 21 6.6C25 5 29 8.2 29 13.4 29 21.8 17 29 17 29Z" stroke="#2F6F62" stroke-width="2"/></svg>
+        <h3>Root Canal Treatment</h3>
+        <p>Painless, modern RCT procedures</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 34 34" fill="none"><path d="M17 5 28 10v8c0 8-6 11-11 13-5-2-11-5-11-13v-8z" stroke="#2F6F62" stroke-width="2"/></svg>
+        <h3>Braces & Aligners</h3>
+        <p>Orthodontic care for all ages</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-item">
+      <span class="tval">12+</span>
+      <span class="tlabel">Years experience</span>
+    </div>
+    <div class="trust-item">
+      <span class="tval">100%</span>
+      <span class="tlabel">Registered & certified</span>
+    </div>
+    <div class="trust-item">
+      <span class="tval">1:1</span>
+      <span class="tlabel">Personalised care</span>
+    </div>
+    <div class="trust-item">
+      <span class="tval">&lt;1 min</span>
+      <span class="tlabel">To book on WhatsApp</span>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="book">
+  <div class="wrap">
+    <div class="booking-card">
+      <div>
+        <h2>Book your visit</h2>
+        <div class="booking-data">
+          45 Park Road, Gomti Nagar, Lucknow<br>
+          +91 98765 12345<br>
+          Mon–Sat · 10:00 AM – 7:00 PM
+        </div>
+      </div>
+      <div>
+        <h2>Prefer to message?</h2>
+        <p style="color:var(--ink-soft);margin:0 0 18px;">Send your preferred time on WhatsApp and we'll confirm your slot.</p>
+        <div class="booking-ctas">
+          <a class="btn btn-primary" href="https://wa.me/919876512345">Book on WhatsApp</a>
+          <a class="btn btn-ghost" href="tel:+91 98765 12345">Call Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>&copy; <span id="yr"></span> Smile Studio Dental Clinic. All rights reserved.</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
